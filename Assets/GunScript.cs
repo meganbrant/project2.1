@@ -47,4 +47,7 @@ public class GunScript : MonoBehaviour
        if(debug) Debug.Log("Out of Ammo");
      }
   }
+
+
+  
 }
