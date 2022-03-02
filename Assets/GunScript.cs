@@ -16,7 +16,17 @@ public class GunScript : MonoBehaviour
     public int clipSize = 10;
     public int clip = 0;
 
+    public AudioClip fire, getAmmo;
+
+    private AudioSource aud;
+
+
     bool canShoot = true;
+
+    void Start(){
+      aud = this.gameObject.GetComponent<AudioSource>();
+
+    }
 
     public void Reload(){
       if(clip == clipSize){
@@ -39,6 +49,7 @@ public class GunScript : MonoBehaviour
     public void Fire(){
       if(canShoot){
         if(debug) Debug.Log("Pow");
+        audio.PlayOneShot(fire);
         if(clip>0){
           clip-=1;
           Rigidbody bullet = Instantiate(bulletPrefab,bulletSpawn.position, bulletSpawn.rotation);
@@ -58,7 +69,10 @@ public class GunScript : MonoBehaviour
        canShoot = true;
      }
   
-
+    public void GetAmmo(){
+      totalAmmo +=90;
+      aud.PlayOneShot(getAmmo);
+    }
 
   
 }
