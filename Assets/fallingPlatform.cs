@@ -5,10 +5,13 @@ using UnityEngine;
 public class fallingPlatform : MonoBehaviour
 {
 
+    
     public AnimationCurve curve;
     bool platformIsActive = false;
     public bool randomize = true;
     public float resetInterval = 3;
+    public Material originalMaterial;
+    public Material changeMaterial;
 
     Rigidbody rb;
     Vector3 startPosition;
@@ -24,17 +27,15 @@ public class fallingPlatform : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        
-    }
 
     void OnTriggerEnter(Collider other){
         Debug.Log(other.name + " has run into us");
             StartCoroutine(WaitToFall());
-
         
     }
+
+        
+    
 
     IEnumerator WaitToFall(){
         if(!platformIsActive){
@@ -67,4 +68,5 @@ public class fallingPlatform : MonoBehaviour
         platformIsActive = false;
      }
 
-}
+    }
+
