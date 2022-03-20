@@ -4,16 +4,30 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    enum healthType{Player, Enemy, Object};
 
-    public AudioClip death;
+    [SerializeField]
+    healthType hType = healthType.Object;
+
+    public AudioClip death; //kildt for dead player sound
     private AudioSource aud;
 
     public int health = 10;
-    [Tooltip("Check this box if this object is just an object")]
-    public bool isObject = false;
+    private bool isDying = false;
+   
 
     void Start(){
         aud = this.gameObject.GetComponent<AudioSource>();
+    }
+
+    void Update(){
+        if(health <= 0 && !isDying){
+            //aud.PlayOneShot(kildt);    --doesn't work because the scene restarts before audio can play
+            Death();
+        }
+        if(hType== healthType.Player){
+            UIManager.playerHealthText.text = "Health: " + health.ToString();
+        }
     }
 
     void OnCollisionEnter(Collision other){
@@ -23,7 +37,7 @@ public class Health : MonoBehaviour
             //Debug.Log("Magnitude: " + other.relativeVelocity.magnitude);
             //health -= (int)(other.relativeVelocity.magnitude * 0.05f);
 
-            health-= other.gameObject.GetComponent<bullet>().damage;
+            health -= other.gameObject.GetComponent<bullet>().damage;
 
 
             if(health <=0){
@@ -34,7 +48,8 @@ public class Health : MonoBehaviour
 
 
     void Death(){
-        if(isObject){
+        isDying = true;
+        if(hType == healthType.Object){
             Destroy(this.GetComponent<Collider>());
             Destroy(this.GetComponent<Renderer>());
             for(int i = 0; i <4; i++){
@@ -46,10 +61,27 @@ public class Health : MonoBehaviour
             }
             Destroy(this.gameObject, 1);
             aud.PlayOneShot(death);
-        } else{
+        } else if(hType == healthType.Enemy){
             this.gameObject.AddComponent<Rigidbody>();
-            Destroy(this.gameObject, 5);
+            //Destroy(this.gameObject, 5);
+            StartCoroutine(GetSmallAndDie());
+            aud.PlayOneShot(death);
+        } else if(hType == healthType.Player) {
+            Application.LoadLevel(0);
+            aud.PlayOneShot(death);
         }
+    }
+
+    IEnumerator GetSmallAndDie() {
+        float time= 4;
+        float ObjectStartSize = this.transform.localScale.y;
+        float objectSize = this.transform.localScale.y;
+        while(objectSize > 0.1f) {
+            this.transform.localScale -= Vector3.one * (ObjectStartSize / time) * Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+            objectSize = this.transform.localScale.y;
+        }
+        Destroy(this.gameObject);
     }
 
 }

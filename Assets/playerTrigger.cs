@@ -5,9 +5,22 @@ using UnityEngine;
 public class playerTrigger : MonoBehaviour
 {
     public GunScript gun;
-    void OnTriggerEnter(Collider other){
-        if(other.gameObject.CompareTag("ammo pickup")) {
-            gun.GetAmmo();
+
+    void Start() {
+        if(gun == null) {
+            Debug.LogError("you forgot to assign the gun here.");
+            gun = GameObject.Find("gun").GetComponent<GunScript>();
         }
     }
+
+    void OnTriggerEnter(Collider other){
+        Debug.Log("I have hit " + other.gameObject.name);
+        if(other.gameObject.CompareTag("ammo pickup")) {
+            gun.PickupAmmo();
+            Destroy(other.gameObject);
+        } 
+    }
+
+  
+
 }

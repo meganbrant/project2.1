@@ -56,7 +56,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.375, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2735554094267088634}
   m_Father: {fileID: 8997996947095583982}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -190,7 +191,6 @@ Transform:
   m_Children:
   - {fileID: 4135013735270702856}
   - {fileID: 5393215578589016641}
-  - {fileID: 2735554094267088634}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -386,7 +386,6 @@ GameObject:
   - component: {fileID: 2735554094267088634}
   - component: {fileID: 8489872929695885765}
   - component: {fileID: 5963781193608114089}
-  - component: {fileID: 1021847867147153785}
   - component: {fileID: 5880937324001682219}
   m_Layer: 0
   m_Name: gun
@@ -402,13 +401,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8998680926958298675}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.62, y: 0.98, z: 0.499}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0.6199998, y: -0.39499998, z: 0.49900013}
   m_LocalScale: {x: 0.91648567, y: 0.8885343, z: 2.3303897}
   m_Children:
   - {fileID: 7522053266457651211}
-  m_Father: {fileID: 8997996947095583982}
-  m_RootOrder: 2
+  m_Father: {fileID: 4135013735270702856}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &8489872929695885765
 MeshFilter:
@@ -462,19 +461,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1021847867147153785
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8998680926958298675}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5880937324001682219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -487,10 +473,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0412a747b296c54b9f0029b02601635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 0
   bulletPrefab: {fileID: 3032731551405080591, guid: ccdb44f8cba281b4f9826ffb1e91e868, type: 3}
   bulletSpawn: {fileID: 7522053266457651211}
   bulletSpeed: 5
+  fireRate: 0.1
+  debug: 0
+  fire: {fileID: 0}
+  clipUp: {fileID: 0}
+  emptyAmmo: {fileID: 0}
   totalAmmo: 30
   clipSize: 10
   clip: 0
