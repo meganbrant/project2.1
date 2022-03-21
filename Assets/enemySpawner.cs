@@ -8,7 +8,7 @@ public class enemySpawner : MonoBehaviour
     public GameObject enemyPrefab;
     public Transform player;
     public int totalDesiredEnemies = 10;
-    public float spawnInterval = 3;
+    public float spawnInterval = 4;
 
     int enemiesCreated = 0;
 

@@ -45,6 +45,9 @@ public class GunScript : MonoBehaviour
         clip = totalAmmo +clip;
         totalAmmo = 0;
       }
+
+        UIManager.ammoInClipText.text = "Clip: " + clip.ToString();
+        UIManager.ammoInReserveText.text = "Ammo: " + totalAmmo.ToString();
     }
 
     public void Fire(){
@@ -57,6 +60,7 @@ public class GunScript : MonoBehaviour
           bullet.AddRelativeForce(Vector3.forward * bulletSpeed, ForceMode.Impulse);
           aud.PlayOneShot(fire);
 
+          UIManager.ammoInClipText.text = "Clip: " + clip.ToString();
           StartCoroutine(Cooldown());
       } else{
           if(debug) Debug.Log("Out of Ammo");
@@ -67,9 +71,11 @@ public class GunScript : MonoBehaviour
 
     public void PickupAmmo(){
       totalAmmo += 90;
+      UIManager.ammoInReserveText.text = "Ammo: " + totalAmmo.ToString();
       aud.PlayOneShot(clipUp);    
     }
 
+    
 
     IEnumerator Cooldown(){
        canShoot = false;

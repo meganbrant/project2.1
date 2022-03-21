@@ -9,7 +9,7 @@ public class Health : MonoBehaviour
     [SerializeField]
     healthType hType = healthType.Object;
 
-    public AudioClip death; //kildt for dead player sound
+    public AudioClip death, coinCollect; //kildt for dead player sound
     private AudioSource aud;
 
     public int health = 10;
@@ -28,6 +28,11 @@ public class Health : MonoBehaviour
         if(hType== healthType.Player){
             UIManager.playerHealthText.text = "Health: " + health.ToString();
         }
+    }
+
+    public void CollectCoin(){
+        health += 10;
+        aud.PlayOneShot(coinCollect);
     }
 
     void OnCollisionEnter(Collision other){
@@ -63,14 +68,17 @@ public class Health : MonoBehaviour
             aud.PlayOneShot(death);
         } else if(hType == healthType.Enemy){
             this.gameObject.AddComponent<Rigidbody>();
+            UIManager.KilledEnemy();
             //Destroy(this.gameObject, 5);
             StartCoroutine(GetSmallAndDie());
             aud.PlayOneShot(death);
         } else if(hType == healthType.Player) {
-            Application.LoadLevel(0);
             aud.PlayOneShot(death);
+            Application.LoadLevel(0);
         }
     }
+
+    
 
     IEnumerator GetSmallAndDie() {
         float time= 4;

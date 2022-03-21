@@ -5,6 +5,7 @@ using UnityEngine;
 public class playerTrigger : MonoBehaviour
 {
     public GunScript gun;
+    public Health health;
 
     void Start() {
         if(gun == null) {
@@ -19,8 +20,13 @@ public class playerTrigger : MonoBehaviour
             gun.PickupAmmo();
             Destroy(other.gameObject);
         } 
+        if(other.gameObject.CompareTag("coin")){
+            health.CollectCoin();
+            Destroy(other.gameObject);
+        }
     }
 
+   
   
 
 }
