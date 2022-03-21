@@ -21,6 +21,6 @@ public class UIManager : MonoBehaviour
     public static void KilledEnemy() {
         totalEnemiesKilled += 1;
         enemiesKilledText.text = "Kill Count: " + totalEnemiesKilled.ToString();
-    }
+    } //why is my UI not showing on my build render :0
 }
 

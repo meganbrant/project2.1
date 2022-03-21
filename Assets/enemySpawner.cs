@@ -31,7 +31,8 @@ public class enemySpawner : MonoBehaviour
         
     }
 
-    
+    //Anytime I replace the GameObject with Enemy my unity freaks out and its like "are you sure" so Im very confused
+    //I followed everything you did five times over idk
 
 
 }

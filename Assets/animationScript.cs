@@ -3,6 +3,9 @@ using System.Collections;
 
 public class animationScript : MonoBehaviour {
 
+
+    //I DID NOT WRITE THIS
+    //i found it during week 4 and am unable to find the original author but i will keep looking
     public bool isAnimated = false;
 
     public bool isRotating = false;
@@ -25,12 +28,10 @@ public class animationScript : MonoBehaviour {
     public float scaleRate;
     private float scaleTimer;
 
-	// Use this for initialization
 	void Start () {
 	
 	}
 	
-	// Update is called once per frame
 	void Update () {
 
         if(isAnimated) {
@@ -69,5 +70,5 @@ public class animationScript : MonoBehaviour {
                 }
             }
         }
-	}
+	} //not my code, none of
 }

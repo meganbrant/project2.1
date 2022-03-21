@@ -30,6 +30,7 @@ public class Health : MonoBehaviour
         }
     }
 
+    // LOOK AT ME LEARNING AND WRITING THIS ON MY OWN WOW
     public void CollectCoin(){
         health += 10;
         aud.PlayOneShot(coinCollect);
